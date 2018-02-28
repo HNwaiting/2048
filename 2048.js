@@ -27,7 +27,7 @@ function start() {
                 //moveUp();
                break;
             case 39:
-                //moveRight();
+                moveRight();
                break;
             case 40:
                 //moveDown();
@@ -122,10 +122,91 @@ function getNextcInRow(r, c) {
                 //返回nextc
                 return nextC;
             }
-            //否则返回-1;
-            else
-                return -1;
         }
+        //否则返回-1;
+            return -1;
+
 }
 
+//向右移动
+function moveRight() {
+    var before = String(data);
+    for (var r = 0; r < rn; r++) {
+        moveRightInRow(r);//向左移动r行
+    }
+    var after = String(data);
+    //如果发生变化
+    if (before !== after) {
+        //再生成新数字，更新界面
+        randomNumber();
+        updateView();
+    }
+}
+function moveRightInRow(r) {
+    for(c=cn-1;c>0;c--){
+       var beforeC = getBeforecInRow(r,c);
+        if (beforeC === -1) {
+            break;
+        }
+        else {
+            if (data[r][c] === 0) {
+                data[r][c] = data[r][beforeC];
+                data[r][beforeC] = 0;
+                //抵消for循环里面的++,事C位置不变
+                c++;
+            } else if (data[r][c] === data[r][beforeC]) {
+                data[r][c]*= 2;
+                data[r][beforeC] = 0;
+            }
+        }
+
+    }
+}
+function getBeforecInRow(r,c) {
+    //beforec从cn-1开始,到0结束
+    for (var beforeC = c-1; beforeC>=0; beforeC--) {
+        //如果data中r行nextc位置不等于0
+        if (data[r][beforeC] !== 0) {
+            //返回nextc
+            return beforeC;
+        }
+    }
+    //否则返回-1;
+    return -1;
+}
+
+//向上移动
+function moveUp() {
+    var before = String(data);
+    for (c=0;c<cn;c++){
+        moveUpInCol(c);
+    }
+    var after = String(data);
+    //如果发生变化
+    if (before !== after) {
+        //再生成新数字，更新界面
+        randomNumber();
+        updateView();
+    }
+}
+
+function moveUpInCol(c) {
+    for(r=0;r<rn;r++){
+        var nextR = getNextcInRow(r, c);
+        if (nextR === -1) {
+            break;
+        }
+        else {
+            if (data[r][c] === 0) {
+                data[r][c] = data[nextR][c];
+                data[nextR][c] = 0;
+                //抵消for循环里面的++,事C位置不变
+                c--;
+            } else if (data[r][c] === data[nextR][c]) {
+                data[r][c]*= 2;
+                data[nextR][c] = 0;
+            }
+        }
+    }
+}
 start();
