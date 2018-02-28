@@ -24,13 +24,13 @@ function start() {
                moveLeft();
                break;
             case 38:
-                //moveUp();
+                moveUp();
                break;
             case 39:
                 moveRight();
                break;
             case 40:
-                //moveDown();
+                moveDown();
                break;
        }
     }
@@ -47,7 +47,7 @@ function randomNumber() {
         //在没有数字的地方放置数字 r/c值为0
         if(data[r][c]===0){
             //为data中r行c列实际保存一个2或4
-            data[r][c]=Math.random()<0.8?2:4;
+            data[r][c]=Math.random()<0.9?2:4;
             //退出循环
             break;
         }
@@ -192,7 +192,7 @@ function moveUp() {
 
 function moveUpInCol(c) {
     for(r=0;r<rn;r++){
-        var nextR = getNextcInRow(r, c);
+        var nextR = getNextrInCol(r, c);
         if (nextR === -1) {
             break;
         }
@@ -200,13 +200,74 @@ function moveUpInCol(c) {
             if (data[r][c] === 0) {
                 data[r][c] = data[nextR][c];
                 data[nextR][c] = 0;
-                //抵消for循环里面的++,事C位置不变
-                c--;
+                //抵消for循环里面的++,使得r位置不变
+                r--;
             } else if (data[r][c] === data[nextR][c]) {
                 data[r][c]*= 2;
                 data[nextR][c] = 0;
             }
         }
     }
+}
+
+function getNextrInCol(r, c) {
+    //nextr从c+1开始,到cn结束
+    for (var nextR = r + 1; nextR < rn; nextR++) {
+        //如果data中r行nextc位置不等于0
+        if (data[nextR][c] !== 0) {
+            //返回nextc
+            return nextR;
+        }
+    }
+    //否则返回-1;
+    return -1;
+}
+
+//向下移动
+function moveDown() {
+    var before = String(data);
+    for (c=0;c<cn;c++){
+        moveDownInCol(c);
+    }
+    var after = String(data);
+    //如果发生变化
+    if (before !== after) {
+        //再生成新数字，更新界面
+        randomNumber();
+        updateView();
+    }
+}
+
+function moveDownInCol(c) {
+    for(r=rn-1;r>0;r--){
+        var beforeR = getBeforerInCol(r, c);
+        if (beforeR === -1) {
+            break;
+        }
+        else {
+            if (data[r][c] === 0) {
+                data[r][c] = data[beforeR][c];
+                data[beforeR][c] = 0;
+                //抵消for循环里面的++,事r位置不变
+                r++;
+            } else if (data[r][c] === data[beforeR][c]) {
+                data[r][c]*= 2;
+                data[beforeR][c] = 0;
+            }
+        }
+    }
+}
+
+function getBeforerInCol(r,c) {
+    //beforer从rn-1开始,到0结束
+    for (var beforeR = r- 1; beforeR >=0; beforeR--) {
+        //如果data中c行beforer位置不等于0
+        if (data[beforeR][c] !== 0) {
+            //返回nextc
+            return beforeR;
+        }
+    }
+    //否则返回-1;
+    return -1;
 }
 start();
