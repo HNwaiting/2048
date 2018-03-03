@@ -280,4 +280,16 @@ function getBeforerInCol(r,c) {
     //否则返回-1;
     return -1;
 }
+
+//游戏结束
+function isGameOver() {
+    for(var r=0;r<rn;r++){
+        for(var c=0;c<cn;c++){
+            if(data[r][c]===0)return false;
+            if(c<cn-1 && data[r][c]===data[r][c+1])return false
+            if(r<rn-1 && data[r+1][c])return false;
+        }
+    }
+    return true
+}
 start();

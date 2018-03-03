@@ -42,30 +42,30 @@ p{
     /*font-family:Arial;*/
     padding-top:15px;
 }
-/*#gameover{*/
-    /*display:none;*/
-    /*position:absolute;*/
-    /*top:0; left:0;*/
-    /*bottom:0; right:0;*/
-    /*!*width:100%; height:100%;*!*/
-    /*!*问题: opacity是继承的*/
-      /*解决: background:rgba()避免继承*!*/
-    /*background:rgba(55,55,55,.5);*/
-/*}*/
-/*#gameover>p{*/
-    /*width:300px; height:200px;*/
-    /*background:#fff;*/
-    /*position:absolute; top:50%;left:50%;*/
-    /*margin-top:-100px;*/
-    /*margin-left:-150px;*/
-    /*text-align:center; line-height:1.5em;*/
-    /*border-radius:10px;*/
-    /*border:1px solid #edcf72;*/
-/*}*/
-/*#gameover a{*/
-    /*padding:10px;*/
-    /*background:#9f8d77;*/
-    /*color:#fff;*/
-    /*border-radius: 6px;*/
-    /*text-decoration: none;*/
-/*}*/
+#gameover{
+    display:none;
+    position:absolute;
+    top:0; left:0;
+    bottom:0; right:0;
+    /*width:100%; height:100%;*/
+    /*问题: opacity是继承的
+      解决: background:rgba()避免继承*/
+    background:rgba(55,55,55,.5);
+}
+#gameover>p{
+    width:300px; height:200px;
+    background:#fff;
+    position:absolute; top:50%;left:50%;
+    margin-top:-100px;
+    margin-left:-150px;
+    text-align:center; line-height:1.5em;
+    border-radius:10px;
+    border:1px solid #edcf72;
+}
+#gameover a{
+    padding:10px;
+    background:#9f8d77;
+    color:#fff;
+    border-radius: 6px;
+    text-decoration: none;
+}
