@@ -1,10 +1,12 @@
 //定义总行数，总列数
 var rn=4,cn=4;
 var data;//定义二维数组
-var socre;
-
+var socre=0;
+var status=0;
+const RUNING=1,GAMEOVER=0;
 //初始化函数
 function start() {
+    status=RUNING;
     score = 0;
     data=[];
     //数组遍历
@@ -81,8 +83,16 @@ function updateView() {
             }
         }
     }
-    var span=document.getElementById("final");
+    var span=document.getElementById("score");
     span.innerHTML=score;
+    var div = document.getElementById("gameover");
+    if(status===GAMEOVER){
+        var span = document.getElementById("final");
+        span.innerHTML=score;
+        div.style.display="block";
+    }else{
+        div.style.display="none" ;
+    }
 }
 
 //向左移动
@@ -97,6 +107,8 @@ function moveLeft() {
         if (before !== after) {
             //再生成新数字，更新界面
             randomNumber();
+            if(isGameOver())
+            status=GAMEOVER;
             updateView();
         }
 }
@@ -146,6 +158,8 @@ function moveRight() {
     if (before !== after) {
         //再生成新数字，更新界面
         randomNumber();
+        if(isGameOver())
+            status=GAMEOVER;
         updateView();
     }
 }
@@ -194,6 +208,8 @@ function moveUp() {
     if (before !== after) {
         //再生成新数字，更新界面
         randomNumber();
+        if(isGameOver())
+            status=GAMEOVER;
         updateView();
     }
 }
@@ -243,6 +259,8 @@ function moveDown() {
     if (before !== after) {
         //再生成新数字，更新界面
         randomNumber();
+        if(isGameOver())
+            status=GAMEOVER;
         updateView();
     }
 }
@@ -286,7 +304,7 @@ function isGameOver() {
     for(var r=0;r<rn;r++){
         for(var c=0;c<cn;c++){
             if(data[r][c]===0)return false;
-            if(c<cn-1 && data[r][c]===data[r][c+1])return false
+            if(c<cn-1 && data[r][c]===data[r][c+1])return false;
             if(r<rn-1 && data[r+1][c])return false;
         }
     }
