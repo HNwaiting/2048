@@ -1,9 +1,11 @@
 //定义总行数，总列数
 var rn=4,cn=4;
 var data;//定义二维数组
+var socre;
 
 //初始化函数
 function start() {
+    score = 0;
     data=[];
     //数组遍历
     for(var r=0;r<rn;r++){
@@ -59,6 +61,8 @@ function randomNumber() {
 function updateView() {
     //遍历data
     for(var r=0;r<rn;r++){
+        //设置score
+
         for(var c=0;c<cn;c++){
             //拼接一个id
             var id = "c"+ r + c;
@@ -77,6 +81,8 @@ function updateView() {
             }
         }
     }
+    var span=document.getElementById("final");
+    span.innerHTML=score;
 }
 
 //向左移动
@@ -109,6 +115,7 @@ function moveLeftInRow(r) {
                 c--;
             } else if (data[r][c] === data[r][nextC]) {
                 data[r][c]*= 2;
+                score += data[r][c];
                 data[r][nextC] = 0;
             }
         }
@@ -156,6 +163,7 @@ function moveRightInRow(r) {
                 c++;
             } else if (data[r][c] === data[r][beforeC]) {
                 data[r][c]*= 2;
+                score += data[r][c];
                 data[r][beforeC] = 0;
             }
         }
@@ -204,6 +212,7 @@ function moveUpInCol(c) {
                 r--;
             } else if (data[r][c] === data[nextR][c]) {
                 data[r][c]*= 2;
+                score += data[r][c];
                 data[nextR][c] = 0;
             }
         }
@@ -252,6 +261,7 @@ function moveDownInCol(c) {
                 r++;
             } else if (data[r][c] === data[beforeR][c]) {
                 data[r][c]*= 2;
+                score += data[r][c];
                 data[beforeR][c] = 0;
             }
         }
