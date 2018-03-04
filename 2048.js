@@ -87,8 +87,8 @@ function updateView() {
     span.innerHTML=score;
     var div = document.getElementById("gameover");
     if(status===GAMEOVER){
-        var span = document.getElementById("final");
-        span.innerHTML=score;
+      //  var span = document.getElementById("final");
+     //   span.innerHTML=score;
         div.style.display="block";
     }else{
         div.style.display="none" ;
