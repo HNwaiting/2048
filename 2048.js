@@ -85,10 +85,10 @@ function updateView() {
     }
     var span=document.getElementById("score");
     span.innerHTML=score;
-    var div = document.getElementById("gameover");
+     div = document.getElementById("gameover");
     if(status===GAMEOVER){
-      //  var span = document.getElementById("final");
-     //   span.innerHTML=score;
+       span = document.getElementById("final");
+       span.innerHTML=score;
         div.style.display="block";
     }else{
         div.style.display="none" ;
