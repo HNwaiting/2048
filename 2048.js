@@ -84,10 +84,10 @@ function updateView() {
         }
     }
     var span=document.getElementById("score");
-    span.innerHTML=score;
-     div = document.getElementById("gameover");
+     span.innerHTML=score;
+    var div = document.getElementById("gameover");
     if(status===GAMEOVER){
-       span = document.getElementById("final");
+       var span = document.getElementById("final");
        span.innerHTML=score;
         div.style.display="block";
     }else{
