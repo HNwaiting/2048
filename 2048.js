@@ -23,20 +23,20 @@ function start() {
     updateView();
     //为页面添加键盘按下时间处理函数
     document.onkeydown=function (e) {
-       switch (e.keyCode){
-           case 37:
-               moveLeft();
-               break;
+        switch (e.keyCode){
+            case 37:
+                moveLeft();
+                break;
             case 38:
                 moveUp();
-               break;
+                break;
             case 39:
                 moveRight();
-               break;
+                break;
             case 40:
                 moveDown();
-               break;
-       }
+                break;
+        }
     }
 }
 
@@ -64,7 +64,6 @@ function updateView() {
     //遍历data
     for(var r=0;r<rn;r++){
         //设置score
-
         for(var c=0;c<cn;c++){
             //拼接一个id
             var id = "c"+ r + c;
@@ -72,9 +71,9 @@ function updateView() {
             var div = document.getElementById(id);
             //数值不为0时写入到页面中
             if(data[r][c]!==0){
-            //将数值保存到页面中
-            div.innerHTML=data[r][c];
-            //设置div的class为n+data[r][c]
+                //将数值保存到页面中
+                div.innerHTML=data[r][c];
+                //设置div的class为n+data[r][c]
                 div.className="n"+data[r][c];
             }
             else{
@@ -84,11 +83,11 @@ function updateView() {
         }
     }
     var span=document.getElementById("score");
-     span.innerHTML=score;
+    span.innerHTML=score;
     var div = document.getElementById("gameover");
-    if(status===GAMEOVER){
-       var span = document.getElementById("final");
-       span.innerHTML=score;
+    if(status==GAMEOVER){
+        var span = document.getElementById("final");
+        span.innerHTML=score;
         div.style.display="block";
     }else{
         div.style.display="none" ;
@@ -102,15 +101,15 @@ function moveLeft() {
     for (var r = 0; r < rn; r++) {
         moveLeftInRow(r);//向左移动r行
     }
-        var after = String(data);
-        //如果发生变化
-        if (before !== after) {
-            //再生成新数字，更新界面
-            randomNumber();
-            if(isGameOver())
+    var after = String(data);
+    //如果发生变化
+    if (before !== after) {
+        //再生成新数字，更新界面
+        randomNumber();
+        if(isGameOver())
             status=GAMEOVER;
-            updateView();
-        }
+        updateView();
+    }
 }
 //左移第r行
 function moveLeftInRow(r) {
@@ -134,16 +133,16 @@ function moveLeftInRow(r) {
     }
 }
 function getNextcInRow(r, c) {
-        //nextc从c+1开始,到cn结束
-        for (var nextC = c + 1; nextC < cn; nextC++) {
-            //如果data中r行nextc位置不等于0
-            if (data[r][nextC] !== 0) {
-                //返回nextc
-                return nextC;
-            }
+    //nextc从c+1开始,到cn结束
+    for (var nextC = c + 1; nextC < cn; nextC++) {
+        //如果data中r行nextc位置不等于0
+        if (data[r][nextC] !== 0) {
+            //返回nextc
+            return nextC;
         }
-        //否则返回-1;
-            return -1;
+    }
+    //否则返回-1;
+    return -1;
 
 }
 
@@ -165,7 +164,7 @@ function moveRight() {
 }
 function moveRightInRow(r) {
     for(c=cn-1;c>0;c--){
-       var beforeC = getBeforecInRow(r,c);
+        var beforeC = getBeforecInRow(r,c);
         if (beforeC === -1) {
             break;
         }
