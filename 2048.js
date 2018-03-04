@@ -1,7 +1,7 @@
 //定义总行数，总列数
 var rn=4,cn=4;
 var data;//定义二维数组
-var socre=0;
+var score=0;
 var status=0;
 const RUNING=1,GAMEOVER=0;
 //初始化函数
@@ -302,11 +302,34 @@ function getBeforerInCol(r,c) {
 function isGameOver() {
     for(var r=0;r<rn;r++){
         for(var c=0;c<cn;c++){
-            if(data[r][c]===0)return false;
-            if(c<cn-1 && data[r][c]===data[r][c+1])return false;
-            if(r<rn-1 && data[r+1][c])return false;
+            if(data[r][c]===0) return false;
+            if(c<cn-1
+                &&data[r][c]===data[r][c+1])
+                return false;
+            if(r<rn-1
+                &&data[r][c]===data[r+1][c])
+                return false;
         }
     }
-    return true
+    return true;
 }
+// //判断游戏是否结束
+// function isGameOver(){
+//     //遍历data
+//     for(var r=0;r<rn;r++){
+//         for(var c=0;c<cn;c++){
+//             //如果当前元素是0，就返回false
+//             if(data[r][c]==0) return false;
+//             //如果c<CN-1且当前元素等于右侧元素
+//             if(c<cn-1
+//                 &&data[r][c]==data[r][c+1])
+//                 return false;//就返回false
+//             //如果r<RN-1且当前元素等于下方元素
+//             if(r<rn-1
+//                 &&data[r][c]==data[r+1][c])
+//                 return false;//就返回false
+//         }
+//     }
+//     return true;//返回true
+// }
 start();
